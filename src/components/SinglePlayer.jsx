@@ -19,6 +19,7 @@ export default function SinglePlayer() {
       <p>single player</p>
       <div>
         <h3>{player.name}</h3>
+        <button>Delete</button>
       </div>
     </>
   );

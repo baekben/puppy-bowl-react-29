@@ -21,3 +21,22 @@ export const getSinglePlayer = async (id) => {
     console.error("Trouble getting single player", error);
   }
 };
+
+export const addNewPlayer = async (name, breed, status, team) => {
+  try {
+    const response = await fetch(`${apiURL}/players/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        breed: breed,
+        status: status,
+        team: team,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error("Error adding player to API", error);
+  }
+};
