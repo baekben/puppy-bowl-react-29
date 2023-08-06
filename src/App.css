@@ -2,41 +2,176 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  grid-template-rows: 0.2fr 2.5fr 0.3fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". title ."
+    "sideBar gameContainer gameContainer"
+    "footer footer footer";
+}
+
+.gameContainer {
+  max-height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 0.4fr 2.1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "pageTitle pageTitle pageTitle"
+    ". searchBarContainer ."
+    "contents contents contents";
+  grid-area: gameContainer;
+}
+
+.gameContainer.newPlayer,
+.gameContainer.singlePlayer {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 2.1fr;
+  grid-template-areas:
+    "pageTitle pageTitle pageTitle"
+    "contents contents contents";
+}
+
+.pageTitle {
+  grid-area: pageTitle;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.searchBarContainer {
+  grid-area: searchBarContainer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contents {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " . . . "
+    " . . . "
+    " . . .";
+  grid-area: contents;
+  overflow-y: scroll;
+  text-align: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.contents.newPlayer {
+  grid-template-rows: 1fr;
+  grid-template-areas: ". formContent .";
 }
 
-.card {
-  padding: 2em;
+.contents.singlePlayer {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: " playerImg playerInfo buttonContainer ";
 }
 
-.read-the-docs {
-  color: #888;
+.playerImg {
+  grid-area: playerImg;
+}
+
+.playerInfo {
+  grid-area: playerInfo;
+}
+
+.buttonContainer {
+  grid-area: buttonContainer;
+}
+
+.contents.allPlayers {
+  text-align: center;
+}
+
+.title {
+  grid-area: title;
+}
+
+.footer {
+  grid-area: footer;
+  margin-top: 18px;
+}
+
+.sideBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.9fr 1.1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    "navbar navbar navbar"
+    "navbar navbar navbar";
+  grid-area: sideBar;
+}
+
+.navbar {
+  grid-area: navbar;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 5px;
+  border: 3px solid #65451f;
+  border-radius: 18px;
+  padding: 25px;
+}
+
+.formContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: row;
+  grid-template-areas: ". form .";
+  grid-area: formContent;
+}
+
+form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  grid-area: form;
+}
+
+.contents > button {
+  width: min-content;
+}
+
+.player {
+  max-width: 500px;
+  margin: 3px;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  height: 150px;
+  justify-content: space-evenly;
+  background-color: #c8ae7d;
+}
+
+.dogInfo {
+  text-align: right;
+  margin: 5px;
+}
+
+.dogImg {
+  margin-top: 8px;
+  padding: 4px;
+}
+
+img {
+  border-radius: 8px;
+}
+
+#singleImg {
+  width: 200px;
+  height: 200px;
 }

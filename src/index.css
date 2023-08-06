@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #65451f;
+  background-color: #eac696;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,17 +16,20 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #65451f;
   text-decoration: inherit;
+  text-align: center;
+  border: 2px solid #65451f;
+  border-radius: 6px;
+  background-color: #c8ae7d;
+  width: 150px;
 }
 a:hover {
-  color: #535bf2;
+  color: #c8ae7d;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -43,12 +46,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #c8ae7d;
+  color: black;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #765827;
 }
 button:focus,
 button:focus-visible {
@@ -57,13 +61,27 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #f7e987;
+    background-color: #252b48;
   }
   a:hover {
-    color: #747bff;
+    color: black;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #5b9a8b;
+  }
+  button:hover {
+    border-color: #f7e987;
+  }
+  .navbar {
+    border: 3px solid #5b9a8b;
+  }
+  .player {
+    background-color: #445069;
+  }
+  a {
+    color: white;
+    border: 2px solid #5b9a8b;
+    background-color: #445069;
   }
 }

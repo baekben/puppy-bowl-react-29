@@ -16,10 +16,29 @@ export default function SinglePlayer() {
   }, [id]);
   return (
     <>
-      <p>single player</p>
-      <div>
-        <h3>{player.name}</h3>
-        <button>Delete</button>
+      <div className="gameContainer">
+        <div className="pageTitle">
+          <h1>Puppy</h1>
+        </div>
+        <div className="contents singlePlayer">
+          <div className="playerImg">
+            <img src={player.imageUrl} alt="" id="singleImg" />
+          </div>
+          <div className="playerInfo">
+            <div className="playerName">
+              <h3>Name: {player.name}</h3>
+            </div>
+            <div className="playerBreed">
+              <h4>Breed: {player.breed}</h4>
+            </div>
+            <div className="playerStatus">
+              <h4>Status: {player.status}</h4>
+            </div>
+          </div>
+          <div className="buttonContainer">
+            <button>Delete</button>
+          </div>
+        </div>
       </div>
     </>
   );
