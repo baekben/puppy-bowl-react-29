@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function NewPlayerForm() {
   const [name, setName] = useState();
   const [breed, setBreed] = useState();
-  const [status, setStatus] = useState("bench");
+  const [status, setStatus] = useState();
   const [team, setTeam] = useState();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -52,9 +52,16 @@ export default function NewPlayerForm() {
                 <input
                   value={status}
                   type="text"
-                  defaultValue={"bench"}
+                  placeholder="Bench or Field"
                   onChange={(e) => {
-                    setStatus(e.target.value);
+                    if (
+                      e.target.value.toLowerCase().includes("bench") ||
+                      e.target.value.toLowerCase().includes("field")
+                    ) {
+                      setStatus(e.target.value);
+                    } else {
+                      setStatus("Bench");
+                    }
                   }}
                 />
               </label>
@@ -68,7 +75,9 @@ export default function NewPlayerForm() {
                   }}
                 />
               </label>
-              <button type="submit">Submit</button>
+              <label>
+                <button type="submit">Submit</button>
+              </label>
             </form>
           </div>
         </div>

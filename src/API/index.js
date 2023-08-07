@@ -40,3 +40,15 @@ export const addNewPlayer = async (name, breed, status, team) => {
     console.error("Error adding player to API", error);
   }
 };
+
+export const deletePlayer = async (id) => {
+  try {
+    const response = await fetch(`${apiURL}/players/${id}`, {
+      method: "DELETE",
+    });
+    const result = await response.json();
+    return result.success;
+  } catch (error) {
+    console.error("Error in deleting player", error);
+  }
+};

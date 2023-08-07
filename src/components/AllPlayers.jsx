@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { getAllPlayers } from "../API/index";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AllPlayers() {
-  const [players, setPlayers] = useState([]);
+export default function AllPlayers({ players, setPlayers, setPickedPlayers }) {
   const navigate = useNavigate();
   const [searchName, setSearchName] = useState(null);
 
@@ -16,7 +16,7 @@ export default function AllPlayers() {
       }
     }
     fetchPlayers();
-  }, []);
+  }, [setPlayers]);
 
   useEffect(() => {
     async function searchForName() {
@@ -27,7 +27,7 @@ export default function AllPlayers() {
       }
     }
     searchForName;
-  }, [searchName]);
+  }, [searchName, setPlayers]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -60,7 +60,6 @@ export default function AllPlayers() {
                 setSearchName(e.target.value);
               }}
             />
-            <button type="submit">🔍</button>
           </form>
         </div>
         <div className="contents allPlayers">
@@ -76,13 +75,25 @@ export default function AllPlayers() {
                   />
                 </div>
                 <div id={player.id} className="dogInfo">
-                  <h4>{player.name}</h4>
+                  <h4>Name: {player.name}</h4>
                   <button
                     onClick={() => {
                       navigate(`/players/${player.id}`);
                     }}
                   >
                     More Details
+                  </button>
+                  <button
+                    id="pickPlayer"
+                    data-player={player.id}
+                    onClick={() => {
+                      setPickedPlayers((pickedPlayers) => [
+                        ...pickedPlayers,
+                        player,
+                      ]);
+                    }}
+                  >
+                    Pick
                   </button>
                 </div>
               </div>

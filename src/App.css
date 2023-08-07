@@ -4,6 +4,10 @@
   padding: 2rem;
 }
 
+.titleContainer {
+  display: flex;
+}
+
 .container {
   display: grid;
   grid-template-columns: 0.5fr 2fr 0.5fr;
@@ -11,13 +15,16 @@
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". title ."
+    ". . ."
     "sideBar gameContainer gameContainer"
     "footer footer footer";
 }
 
 .gameContainer {
-  max-height: 100%;
+  margin: 5px;
+  border: 3px solid #65451f;
+  border-radius: 18px;
+  max-height: 650px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.5fr 0.4fr 2.1fr;
@@ -32,11 +39,11 @@
 
 .gameContainer.newPlayer,
 .gameContainer.singlePlayer {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.5fr 2.1fr;
   grid-template-areas:
-    "pageTitle pageTitle pageTitle"
-    "contents contents contents";
+    "pageTitle pageTitle pageTitle "
+    "contents contents contents ";
 }
 
 .pageTitle {
@@ -46,10 +53,12 @@
 
 .searchBarContainer {
   grid-area: searchBarContainer;
+  display: inline-block;
 }
 
 .contents {
   max-width: 1400px;
+  max-height: 450px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -68,6 +77,8 @@
 
 .contents.newPlayer {
   grid-template-rows: 1fr;
+  grid-template-columns: auto 400px auto;
+  text-align: center;
   grid-template-areas: ". formContent .";
 }
 
@@ -103,15 +114,20 @@
 }
 
 .sideBar {
+  margin: 5px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.9fr 1.1fr 1fr;
+  max-height: 650px;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-rows: fit-content(100px) fit-content(18px) auto fit-content(
+      18px
+    );
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". . ."
     "navbar navbar navbar"
-    "navbar navbar navbar";
+    "pickTitle pickTitle pickTitle"
+    "selectedTeam selectedTeam selectedTeam"
+    "clearTeamBtn clearTeamBtn clearTeamBtn";
   grid-area: sideBar;
 }
 
@@ -121,16 +137,32 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 5px;
+  background-color: #c8ae7d;
   border: 3px solid #65451f;
   border-radius: 18px;
   padding: 25px;
+  object-fit: contain;
+  height: 80px;
+  margin-bottom: 16px;
+}
+
+.pickTitle {
+  grid-area: pickTitle;
+}
+
+.selectedTeam {
+  grid-area: selectedTeam;
+  overflow-y: scroll;
+  border: 3px solid #65451f;
+  border-radius: 18px;
+  padding: 8px;
 }
 
 .formContent {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-flow: row;
-  grid-template-areas: ". form .";
+  grid-template-areas: "form form form"; */
   grid-area: formContent;
 }
 
@@ -145,16 +177,30 @@ form {
   width: min-content;
 }
 
+form > button {
+  margin-left: center;
+}
+
 .player {
-  max-width: 500px;
+  max-width: 300px;
+  height: 150px;
   margin: 3px;
   border: 3px solid transparent;
   border-radius: 5px;
   padding-bottom: 5px;
   display: flex;
-  height: 150px;
   justify-content: space-evenly;
   background-color: #c8ae7d;
+  overflow: hidden;
+}
+
+.player:hover {
+  transition: all 0.3s ease-out;
+  background-color: #a2cdb0;
+}
+
+.pickContainer {
+  display: inline;
 }
 
 .dogInfo {
@@ -174,4 +220,27 @@ img {
 #singleImg {
   width: 200px;
   height: 200px;
+}
+
+#searchBar {
+  display: inline-block;
+  font-size: 35px;
+  padding: 6px;
+  border-radius: 35px;
+}
+
+.headerImg {
+  position: relative;
+  margin-left: 30%;
+}
+
+#corgiHeader {
+  height: 426px;
+  width: 640px;
+  position: absolute;
+  bottom: 0;
+}
+
+ul {
+  list-style-image: url(/img/paw.png);
 }

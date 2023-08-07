@@ -1,8 +1,10 @@
-import { getSinglePlayer } from "../API";
+/* eslint-disable react/prop-types */
+import { getSinglePlayer, deletePlayer } from "../API";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-export default function SinglePlayer() {
+import { useParams, useNavigate } from "react-router-dom";
+export default function SinglePlayer({ setPickedPlayers, pickedPlayers }) {
   const [player, setPlayer] = useState("");
+  const navigate = useNavigate();
   let { id } = useParams();
   useEffect(() => {
     async function fetchPlayer() {
@@ -14,9 +16,18 @@ export default function SinglePlayer() {
     }
     fetchPlayer();
   }, [id]);
+
+  function removePlayer(playerToRemove) {
+    const team = pickedPlayers.filter((prevPlayer) => {
+      prevPlayer.name !== playerToRemove.name;
+    });
+    setPickedPlayers(team);
+    deletePlayer(playerToRemove.id);
+    navigate(`/`);
+  }
   return (
     <>
-      <div className="gameContainer">
+      <div className="gameContainer singlePlayer">
         <div className="pageTitle">
           <h1>Puppy</h1>
         </div>
@@ -36,7 +47,7 @@ export default function SinglePlayer() {
             </div>
           </div>
           <div className="buttonContainer">
-            <button>Delete</button>
+            <button onClick={() => removePlayer(player)}>Delete</button>
           </div>
         </div>
       </div>
